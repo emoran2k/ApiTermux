@@ -44,7 +44,7 @@ app.post('/postData', (req, res) => {
             //     }
             //     console.log(`URL abierta: ${stdout}`);
             // });
-            exec(`am start -n app-debug.apk/com.example.cahscore_sign.MainActivity`, (err, stdout, stderr) => {
+            exec(`am start -n downloads/com.example.cahscore_sign/com.example.cahscore_sign.MainActivity`, (err, stdout, stderr) => {
                 if (err) {
                 console.error(`Error al abrir la URL: ${err}`);
                 return;
@@ -52,7 +52,7 @@ app.post('/postData', (req, res) => {
                 console.log(`URL abierta: ${stdout}`);
             });
 
-      
+        //com.example.cashcore_sign
         res.send('200 OK');
         });
   });
