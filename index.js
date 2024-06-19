@@ -44,7 +44,7 @@ app.post('/postData', (req, res) => {
             //     }
             //     console.log(`URL abierta: ${stdout}`);
             // });
-            exec(`am start -n com.example.cashcore_sign/com.example.cashcore_sign.MainActivity`, (err, stdout, stderr) => {
+            exec(`am start com.example.cashcore_sign/com.example.cashcore_sign.MainActivity`, (err, stdout, stderr) => {
                 if (err) {
                 console.error(`Error al abrir la URL: ${err}`);
                 return;
