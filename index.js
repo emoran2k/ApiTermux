@@ -27,7 +27,7 @@ app.post('/postData', (req, res) => {
       }
 
       // Modifica el archivo HTML (por ejemplo, añade un nuevo elemento div con el texto enviado)
-      const nuevoHtml = html.replace('</body>', `<div>Usuario : ${data.user}</div>\n<div>Operacion : ${data.opType}</div>\n<div>Importe : ${data.importe}</div>\n<div>Metodo : ${data.metodo}</div>\n<div> <\div>\n<div> <\div>\n<</body> `);
+      const nuevoHtml = html.replace('</body>', `  <div>Usuario : ${data.user}</div>\n<div>Operacion : ${data.opType}</div>\n<div>Importe : ${data.importe}</div>\n<div>Metodo : ${data.metodo}</div>\n<div> <\div>\n<div> <\div>\n<</body> `);
 
       // Escribe el nuevo HTML en el archivo
       fs.writeFile('index.html', nuevoHtml, 'utf8', function(err) {
@@ -37,27 +37,24 @@ app.post('/postData', (req, res) => {
               return;
           }
           //open('index.html')
-          exec(`am start -a android.intent.action.VIEW -d http://192.168.1.145:8080`, (err, stdout, stderr) => {
-            if (err) {
+            // exec(`am start -a android.intent.action.VIEW -d http://192.168.1.145:8080`, (err, stdout, stderr) => {
+            //     if (err) {
+            //     console.error(`Error al abrir la URL: ${err}`);
+            //     return;
+            //     }
+            //     console.log(`URL abierta: ${stdout}`);
+            // });
+            exec(`am start -n app-debug.apk/com.example.chascore_sign.MainActivity`, (err, stdout, stderr) => {
+                if (err) {
                 console.error(`Error al abrir la URL: ${err}`);
                 return;
-            }
-            console.log(`URL abierta: ${stdout}`);
-
-
-            exec(`am start -n aapp-debug.apk/com.example.cashcore_sign.MainActivity`, (err, stdout, stderr) => {
-                if (err) {
-                    console.error(`Error al abrir la URL: ${err}`);
-                    return;
                 }
                 console.log(`URL abierta: ${stdout}`);
-
-
-      });
-        res.send('200 OK');
-    });
+            });
 
       
+        res.send('200 OK');
+        });
   });
 });
 
