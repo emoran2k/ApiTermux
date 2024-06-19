@@ -44,7 +44,7 @@ app.post('/postData', (req, res) => {
             //     }
             //     console.log(`URL abierta: ${stdout}`);
             // });
-            exec(`am start -a android.intent.action.MAIN -c android.intent.category.LAUNCHER  com.example.cashcore_sign/com.example.cashcore_sign.MainActivity`, (err, stdout, stderr) => {
+            exec(`am start -n  com.example.cashcore_sign/com.example.cashcore_sign.MainActivity -f FLAG_ACTIVITY_NEW_TASK`, (err, stdout, stderr) => {
                 if (err) {
                 console.error(`Error al abrir la URL: ${err}`);
                 return;
