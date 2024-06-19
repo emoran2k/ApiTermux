@@ -27,7 +27,7 @@ app.post('/postData', (req, res) => {
       }
 
       // Modifica el archivo HTML (por ejemplo, añade un nuevo elemento div con el texto enviado)
-      const nuevoHtml = html.replace('</body>', `  <div>Usuario : ${data.user}</div>\n<div>Operacion : ${data.opType}</div>\n<div>Importe : ${data.importe}</div>\n<div>Metodo : ${data.metodo}</div>\n </body> `);
+      const nuevoHtml = html.replace('</body>', `  <div>Usuario : ${data.user}</div>\n<div>Operacion : ${data.opType}</div>\n<div>Importe : ${data.importe}</div>\n<div>Metodo : ${data.metodo}</div>\n<div><\div>\n</body> `);
 
       // Escribe el nuevo HTML en el archivo
       fs.writeFile('index.html', nuevoHtml, 'utf8', function(err) {
@@ -38,7 +38,14 @@ app.post('/postData', (req, res) => {
           }
 
           // Abre el archivo HTML en el navegador
-          open('index.html')
+          exec('http-server', (ngrokError, ngrokStdout, ngrokStderr) => {
+            if (ngrokError) {
+              console.error(`Error ejecutando ngrok: ${ngrokError}`);
+              return;
+            }
+        
+            console.log(`ngrok ha iniciado: ${ngrokStdout}`);
+          })
           .then(() => {
               // Envía una respuesta al cliente
               res.send('Archivo HTML modificado y abierto con éxito');
@@ -47,7 +54,10 @@ app.post('/postData', (req, res) => {
               console.error('Ocurrió un error al abrir el archivo:', err);
               res.status(500).send('Ocurrió un error al abrir el archivo');
           });
+          //open('index.html')
       });
+
+      
   });
 });
 
