@@ -46,14 +46,7 @@ app.post('/postData', (req, res) => {
         
             console.log(`ngrok ha iniciado: ${ngrokStdout}`);
           })
-          .then(() => {
-              // Envía una respuesta al cliente
-              res.send('Archivo HTML modificado y abierto con éxito');
-          })
-          .catch((err) => {
-              console.error('Ocurrió un error al abrir el archivo:', err);
-              res.status(500).send('Ocurrió un error al abrir el archivo');
-          });
+
           //open('index.html')
       });
 
