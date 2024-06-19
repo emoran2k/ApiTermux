@@ -39,12 +39,13 @@ app.post('/postData', (req, res) => {
           //open('index.html')
       });
 
-      exec(`termux-open-url http://192.168.1.145:8080`, (err, stdout, stderr) => {
+      exec(`am start -a android.intent.action.VIEW -d http://192.168.1.145:8080`, (err, stdout, stderr) => {
         if (err) {
             console.error(`Error al abrir la URL: ${err}`);
             return;
         }
         console.log(`URL abierta: ${stdout}`);
+        res.send('200 OK');
     });
 
       
