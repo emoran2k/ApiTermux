@@ -39,7 +39,7 @@ app.post('/postData', (req, res) => {
           //open('index.html')
       });
 
-      exec(`termux-open-url http://192.168.1.100:8080`, (err, stdout, stderr) => {
+      exec(`termux-open-url http://192.168.1.145:8080`, (err, stdout, stderr) => {
         if (err) {
             console.error(`Error al abrir la URL: ${err}`);
             return;
