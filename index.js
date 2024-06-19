@@ -36,19 +36,16 @@ app.post('/postData', (req, res) => {
               res.status(500).send('Ocurrió un error al escribir en el archivo');
               return;
           }
-
-          // Abre el archivo HTML en el navegador
-          exec('http-server', (ngrokError, ngrokStdout, ngrokStderr) => {
-            if (ngrokError) {
-              console.error(`Error ejecutando ngrok: ${ngrokError}`);
-              return;
-            }
-        
-            console.log(`ngrok ha iniciado: ${ngrokStdout}`);
-          })
-
           //open('index.html')
       });
+
+      exec(`termux-open-url http://192.168.1.100:8080`, (err, stdout, stderr) => {
+        if (err) {
+            console.error(`Error al abrir la URL: ${err}`);
+            return;
+        }
+        console.log(`URL abierta: ${stdout}`);
+    });
 
       
   });
@@ -63,6 +60,15 @@ app.listen(port, () => {
     
         console.log(`ngrok ha iniciado: ${ngrokStdout}`);
       });
+
+     exec('http-server', (err, stdout, stderr) => {
+        if (err) {
+          console.error(`Error ejecutando ngrok: ${ngrokError}`);
+          return;
+        }
+    
+        console.log(`ngrok ha iniciado: ${ngrokStdout}`);
+    })
     console.log(`Server running on port ${port}`);
    
 });
