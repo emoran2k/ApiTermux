@@ -7,7 +7,7 @@ import { exec } from 'child_process';
 import open from 'open';
 
 app.get('/getData', (req, res) => {
-    res.send('<title>Hello, API!</title>');
+    res.send('<title>Hello, API!</title>\n<div>Hola Usuario</div>');
 
 });
 
